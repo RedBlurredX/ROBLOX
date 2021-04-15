@@ -4,9 +4,9 @@ local NotificationTheme = {
 	MainColour = Color3.fromRGB(255, 119, 244),
 	BackgroundColour = Color3.fromRGB(25, 25, 25),
 	SecondaryBackgroundColour = Color3.fromRGB(15, 15, 15),
-	Success = Color3.fromRGB(119, 221, 119),
-	Error = Color3.fromRGB(255, 150, 150),
-	Alert = Color3.fromRGB(253, 253, 150),
+	Success = Color3.fromRGB(25, 25, 25),
+	Error = Color3.fromRGB(25, 25, 25),
+	Alert = Color3.fromRGB(25, 25, 25),
 	
 	-- // Text Configuration
 	BodyFont = Enum.Font.SourceSans,
