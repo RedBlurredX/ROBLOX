@@ -96,7 +96,7 @@ function NotificationTheme.returnBaseNotification(CustomTheme)
 	Body.Font = Enum.Font.SourceSans
 	Body.Text = "Body"
 	Body.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Body.TextSize = 50.000
+	Body.TextSize = 40.000
 	Body.TextWrapped = true
 	StatusColourLine.Name = "StatusColourLine"
 	StatusColourLine.Parent = Notification
