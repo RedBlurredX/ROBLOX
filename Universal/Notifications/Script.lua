@@ -1,7 +1,7 @@
 -- WARNING - Made by: Stefanuk12
 local NotificationTheme = {
 	-- // Theme Colours
-	MainColour = Color3.fromRGB(255, 119, 244),
+	MainColour = Color3.fromRGB(0, 0, 0),
 	BackgroundColour = Color3.fromRGB(25, 25, 25),
 	SecondaryBackgroundColour = Color3.fromRGB(15, 15, 15),
 	AutoFarm = Color3.fromRGB(250, 160, 0),
@@ -96,7 +96,7 @@ function NotificationTheme.returnBaseNotification(CustomTheme)
 	Body.Font = Enum.Font.SourceSans
 	Body.Text = "Body"
 	Body.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Body.TextSize = 40.000
+	Body.TextSize = 16.000
 	Body.TextWrapped = true
 	StatusColourLine.Name = "StatusColourLine"
 	StatusColourLine.Parent = Notification
