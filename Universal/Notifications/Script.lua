@@ -4,7 +4,7 @@ local NotificationTheme = {
 	MainColour = Color3.fromRGB(255, 119, 244),
 	BackgroundColour = Color3.fromRGB(25, 25, 25),
 	SecondaryBackgroundColour = Color3.fromRGB(15, 15, 15),
-	Success = Color3.fromRGB(256, 256, 256),
+	Success = Color3.fromRGB(255, 255, 255),
 	Error = Color3.fromRGB(0, 0, 0),
 	Alert = Color3.fromRGB(255, 0, 0),
 	
