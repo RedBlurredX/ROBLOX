@@ -1,4 +1,4 @@
---Made by: Stefanuk12
+-- WARNING - Made by: Stefanuk12
 local NotificationTheme = {
 	-- // Theme Colours
 	MainColour = Color3.fromRGB(255, 119, 244),
