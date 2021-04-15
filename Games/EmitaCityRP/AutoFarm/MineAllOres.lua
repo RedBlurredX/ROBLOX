@@ -1,3 +1,4 @@
+--Made by: RedBlurred
 for i = 1, 4 do
 wait()
 for i, v in pairs(workspace.Mines:GetChildren()) do
