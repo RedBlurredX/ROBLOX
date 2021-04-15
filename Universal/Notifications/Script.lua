@@ -4,9 +4,9 @@ local NotificationTheme = {
 	MainColour = Color3.fromRGB(255, 119, 244),
 	BackgroundColour = Color3.fromRGB(25, 25, 25),
 	SecondaryBackgroundColour = Color3.fromRGB(15, 15, 15),
-	Success = Color3.fromRGB(254, 254, 254),
-	Error = Color3.fromRGB(10, 10, 10),
-	Alert = Color3.fromRGB(255, 10, 10),
+	AutoFarm = Color3.fromRGB(250, 160, 0),
+	Warning = Color3.fromRGB(255, 0, 0),
+	Teleport = Color3.fromRGB(0, 200, 255),
 	
 	-- // Text Configuration
 	BodyFont = Enum.Font.SourceSans,
@@ -96,7 +96,7 @@ function NotificationTheme.returnBaseNotification(CustomTheme)
 	Body.Font = Enum.Font.SourceSans
 	Body.Text = "Body"
 	Body.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Body.TextSize = 16.000
+	Body.TextSize = 50.000
 	Body.TextWrapped = true
 	StatusColourLine.Name = "StatusColourLine"
 	StatusColourLine.Parent = Notification
