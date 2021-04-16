@@ -1,5 +1,5 @@
 -- init
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RedBlurredX/ROBLOX/main/ScriptDevelopment/Ui%20Library/Venyx%20-%20By%3A%20GreenDeno/Source.lua"))()
 local venyx = library.new("Venyx", 5013109572)
 
 -- themes
