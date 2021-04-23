@@ -2052,6 +2052,35 @@ do
 		error("No module found under "..tostring(info))
 	end
 	
+--TextLabel (from ShadowLib)
+	function section:addSubtitle(title)
+        	local subtitle = utility:Create("ImageLabel", {
+            		Name = "SubTitle",
+			Parent = self.container,
+			BackgroundTransparency = 1,
+			Size = UDim2.new(1, -10, 0, 28),
+			ZIndex = 2,
+			Image = "rbxassetid://5028857472",
+			ImageColor3 = themes.LightContrast,
+			ScaleType = Enum.ScaleType.Slice,
+			SliceCenter = Rect.new(4, 4, 296, 296),
+			ClipsDescendants = true
+		}, {
+            		utility:Create("TextLabel", {
+                		Name = "Text",
+                		BackgroundTransparency = 1,
+                		Size = UDim2.new(1, 0, 0, 20),
+                		ZIndex = 2,
+                		Font = Enum.Font.Gotham,
+                		Text = title,
+                		TextColor3 = themes.TextColor,
+                		TextSize = 12,
+                		TextXAlignment = Enum.TextXAlignment.Left,
+                		TextTransparency = 1
+            		})
+        	})
+    	end
+
 --============================== Updates ==============================--
 	function section:updateButton(button, title)
 		button = self:getModule(button)
