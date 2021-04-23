@@ -372,53 +372,7 @@ do
 			sections = {}
 		}, page)
 	end
-	
---==Pageline Settings==--
-	function pageline.new(library, title, icon)
-		local button = utility:Create("TextButton", {
-			Name = title,
-			Parent = library.pagesContainer,
-			BackgroundTransparency = 1,
-			BorderSizePixel = 0,
-			Size = UDim2.new(1, 0, 0, 26),
-			ZIndex = 3,
-			AutoButtonColor = false,
-			Font = Enum.Font.Gotham,
-			Text = "",
-			TextSize = 14
-		}, {
-			utility:Create("TextLabel", {
-				Name = "Title",
-				AnchorPoint = Vector2.new(0, 0.5),
-				BackgroundTransparency = 1,
-				Position = UDim2.new(0, 40, 0.5, 0),
-				Size = UDim2.new(0, 76, 1, 0),
-				ZIndex = 3,
-				Font = Enum.Font.Gotham,
-				Text = title,
-				TextColor3 = themes.TextColor,
-				TextSize = 12,
-				TextTransparency = 0.65,
-				TextXAlignment = Enum.TextXAlignment.Left
-			}),
-			icon and utility:Create("ImageLabel", {
-				Name = "Icon", 
-				AnchorPoint = Vector2.new(0, 0.5),
-				BackgroundTransparency = 1,
-				Position = UDim2.new(0, 12, 0.5, 0),
-				Size = UDim2.new(0, 16, 0, 16),
-				ZIndex = 3,
-				Image = "rbxassetid://" .. tostring(icon),
-				ImageColor3 = themes.TextColor,
-				ImageTransparency = 0.64
-			}) or {}
-		})
-		
-		return setmetatable({
-			library = library,
-		}, page)
-	end
-	
+
 --==Section Settings==--
 	function section.new(page, title)
 		local container = utility:Create("ImageLabel", {
