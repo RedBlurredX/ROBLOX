@@ -202,14 +202,18 @@ end
 
 local library = {} -- main
 local page = {}
+local pageline = {}
 local section = {}
 
 do
 	library.__index = library
 	page.__index = page
+	pageline._index = pageline
 	section.__index = section
 	
---==New Classes==--
+	-- new classes
+	
+--==Library Settings==--
 	function library.new(title)
 		local container = utility:Create("ScreenGui", {
 			Name = title,
@@ -301,6 +305,7 @@ do
 		}, library)
 	end
 	
+--==Page Settings==--
 	function page.new(library, title, icon)
 		local button = utility:Create("TextButton", {
 			Name = title,
@@ -368,6 +373,53 @@ do
 		}, page)
 	end
 	
+--==Pageline Settings==--
+	function pageline.new(library, title, icon)
+		local button = utility:Create("TextButton", {
+			Name = title,
+			Parent = library.pagesContainer,
+			BackgroundTransparency = 1,
+			BorderSizePixel = 0,
+			Size = UDim2.new(1, 0, 0, 26),
+			ZIndex = 3,
+			AutoButtonColor = false,
+			Font = Enum.Font.Gotham,
+			Text = "",
+			TextSize = 14
+		}, {
+			utility:Create("TextLabel", {
+				Name = "Title",
+				AnchorPoint = Vector2.new(0, 0.5),
+				BackgroundTransparency = 1,
+				Position = UDim2.new(0, 40, 0.5, 0),
+				Size = UDim2.new(0, 76, 1, 0),
+				ZIndex = 3,
+				Font = Enum.Font.Gotham,
+				Text = title,
+				TextColor3 = themes.TextColor,
+				TextSize = 12,
+				TextTransparency = 0.65,
+				TextXAlignment = Enum.TextXAlignment.Left
+			}),
+			icon and utility:Create("ImageLabel", {
+				Name = "Icon", 
+				AnchorPoint = Vector2.new(0, 0.5),
+				BackgroundTransparency = 1,
+				Position = UDim2.new(0, 12, 0.5, 0),
+				Size = UDim2.new(0, 16, 0, 16),
+				ZIndex = 3,
+				Image = "rbxassetid://" .. tostring(icon),
+				ImageColor3 = themes.TextColor,
+				ImageTransparency = 0.64
+			}) or {}
+		})
+		
+		return setmetatable({
+			library = library,
+		}, page)
+	end
+	
+--==Section Settings==--
 	function section.new(page, title)
 		local container = utility:Create("ImageLabel", {
 			Name = title,
@@ -749,34 +801,6 @@ do
 		wait(waittime)
 			tempnotification:Destroy()
 	end
-	
---==SubTitle Settings==--
-	function section:addSubtitle(title)
-        	local subtitle = utility:Create("ImageSubTitle", {
-            		Name = "SubTitle",
-			Parent = self.container,
-			BackgroundTransparency = 1,
-			Size = UDim2.new(1, -10, 0, 28),
-			ZIndex = 2,
-			Image = "rbxassetid://5028857472",
-			ImageColor3 = themes.LightContrast,
-			ScaleType = Enum.ScaleType.Slice,
-			SliceCenter = Rect.new(4, 4, 296, 296),
-		}, {
-            		utility:Create("TextLabel", {
-                		Name = "Title",
-                		BackgroundTransparency = 1,
-                		Size = UDim2.new(1, 0, 0, 20),
-                		ZIndex = 2,
-                		Font = Enum.Font.Gotham,
-                		Text = title,
-                		TextColor3 = themes.TextColor,
-                		TextSize = 12,
-                		TextXAlignment = Enum.TextXAlignment.Left,
-                		TextTransparency = 1
-            		})
-        	})
-    	end
 	
 --==Button Settings==--
 	function section:addButton(title, callback)
