@@ -1,17 +1,17 @@
--- init
+--========================= Init =========================--
 local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
 
--- services
+--========================= Services =========================--
 local input = game:GetService("UserInputService")
 local run = game:GetService("RunService")
 local tween = game:GetService("TweenService")
 local tweeninfo = TweenInfo.new
 
--- additional
+--========================= Additional =========================--
 local utility = {}
 
--- themes
+--========================= Themes =========================--
 local objects = {}
 local themes = {
 	Background = Color3.fromRGB(24, 24, 24), 
@@ -159,7 +159,7 @@ do
 	
 		parent = parent or frame
 		
-		-- stolen from wally or kiriot, kek
+		-- from wally or kiriot
 		local dragging = false
 		local dragInput, mousePos, framePos
 
@@ -198,7 +198,7 @@ do
 	
 end
 
--- classes
+--========================= Classes =========================--
 
 local library = {} -- main
 local page = {}
@@ -209,8 +209,7 @@ do
 	page.__index = page
 	section.__index = section
 	
-	-- new classes
-	
+--==New Classes==--
 	function library.new(title)
 		local container = utility:Create("ScreenGui", {
 			Name = title,
@@ -441,8 +440,7 @@ do
 		return section
 	end
 	
-	-- functions
-	
+--========================= Functions =========================--
 	function library:setTheme(theme, color3)
 		themes[theme] = color3
 		
@@ -497,8 +495,8 @@ do
 		self.toggling = false
 	end
 	
-	-- new modules
-	
+--========================= New Modules =========================--
+--==Notify Settings==--
 	function library:Notify(title, text, callback)
 	
 		-- overwrite last notification
@@ -659,6 +657,100 @@ do
 		end)
 	end
 	
+--==Notify Settings (Modded)==--
+	function library:TempNotify(title, text, waittime)
+	
+		-- overwrite last tempnotification
+		if self.activeTempNotification then
+			self.activeTempNotification = self.activeTempNotification()
+		end
+		
+		-- standard create
+		local tempnotification = utility:Create("ImageLabel", {
+			Name = "TempNotification",
+			Parent = self.container,
+			BackgroundTransparency = 1,
+			Size = UDim2.new(0, 200, 0, 60),
+			Image = "rbxassetid://5028857472",
+			ImageColor3 = themes.Background,
+			ScaleType = Enum.ScaleType.Slice,
+			SliceCenter = Rect.new(4, 4, 296, 296),
+			ZIndex = 3,
+			ClipsDescendants = true
+		}, {
+			utility:Create("ImageLabel", {
+				Name = "Flash",
+				Size = UDim2.new(1, 0, 1, 0),
+				BackgroundTransparency = 1,
+				Image = "rbxassetid://4641149554",
+				ImageColor3 = themes.TextColor,
+				ZIndex = 5
+			}),
+			utility:Create("ImageLabel", {
+				Name = "Glow",
+				BackgroundTransparency = 1,
+				Position = UDim2.new(0, -15, 0, -15),
+				Size = UDim2.new(1, 30, 1, 30),
+				ZIndex = 2,
+				Image = "rbxassetid://5028857084",
+				ImageColor3 = themes.Glow,
+				ScaleType = Enum.ScaleType.Slice,
+				SliceCenter = Rect.new(24, 24, 276, 276)
+			}),
+			utility:Create("TextLabel", {
+				Name = "Title",
+				BackgroundTransparency = 1,
+				Position = UDim2.new(0, 10, 0, 8),
+				Size = UDim2.new(1, -40, 0, 16),
+				ZIndex = 4,
+				Font = Enum.Font.GothamSemibold,
+				TextColor3 = themes.TextColor,
+				TextSize = 14.000,
+				TextXAlignment = Enum.TextXAlignment.Left
+			}),
+			utility:Create("TextLabel", {
+				Name = "Text",
+				BackgroundTransparency = 1,
+				Position = UDim2.new(0, 10, 1, -24),
+				Size = UDim2.new(1, -40, 0, 16),
+				ZIndex = 4,
+				Font = Enum.Font.Gotham,
+				TextColor3 = themes.TextColor,
+				TextSize = 12.000,
+				TextXAlignment = Enum.TextXAlignment.Left
+			}),
+		})
+		
+		-- dragging
+		utility:DraggingEnabled(tempnotification)
+		
+		-- position and size
+		title = title or "TempNotification"
+		text = text or ""
+		
+		tempnotification.Title.Text = title
+		tempnotification.Text.Text = text
+		
+		local padding = 10
+		local textSize = game:GetService("TextService"):GetTextSize(text, 12, Enum.Font.Gotham, Vector2.new(math.huge, 16))
+		
+		tempnotification.Position = library.lastTempNotification or UDim2.new(0, padding, 1, -(tempnotification.AbsoluteSize.Y + padding))
+		tempnotification.Size = UDim2.new(0, 0, 0, 60)
+		
+		utility:Tween(tempnotification, {Size = UDim2.new(0, textSize.X + 70, 0, 60)}, 0.2)
+		wait(0.2)
+		
+		tempnotification.ClipsDescendants = false
+		utility:Tween(tempnotification.Flash, {
+			Size = UDim2.new(0, 0, 0, 60),
+			Position = UDim2.new(1, 0, 0, 0)
+		}, 0.2)
+		-- tempnotification time
+		wait(waittime)
+			tempnotification:Destroy()
+	end
+	
+--==Button Settings==--
 	function section:addButton(title, callback)
 		local button = utility:Create("ImageButton", {
 			Name = "Button",
@@ -718,7 +810,8 @@ do
 		
 		return button
 	end
-	
+
+--==Toggle Button Settings==--
 	function section:addToggle(title, default, callback)
 		local toggle = utility:Create("ImageButton", {
 			Name = "Toggle",
@@ -791,7 +884,8 @@ do
 		
 		return toggle
 	end
-	
+
+--==Textbox Settings==--
 	function section:addTextbox(title, default, callback)
 		local textbox = utility:Create("ImageButton", {
 			Name = "Textbox",
@@ -899,7 +993,8 @@ do
 		
 		return textbox
 	end
-	
+
+--==Keybind Settings==--
 	function section:addKeybind(title, default, callback, changedCallback)
 		local keybind = utility:Create("ImageButton", {
 			Name = "Keybind",
@@ -1004,7 +1099,8 @@ do
 		
 		return keybind
 	end
-	
+
+--==ColorPicker Settings==--
 	function section:addColorPicker(title, default, callback)
 		local colorpicker = utility:Create("ImageButton", {
 			Name = "ColorPicker",
@@ -1528,7 +1624,8 @@ do
 		
 		return colorpicker
 	end
-	
+
+--==Slider Settings==--
 	function section:addSlider(title, default, min, max, callback)
 		local slider = utility:Create("ImageButton", {
 			Name = "Slider",
@@ -1679,7 +1776,8 @@ do
 		
 		return slider
 	end
-	
+
+--==Dropdown Settings==--
 	function section:addDropdown(title, list, callback)
 		local dropdown = utility:Create("Frame", {
 			Name = "Dropdown",
@@ -1807,7 +1905,8 @@ do
 	end
 	
 	-- class functions
-	
+
+--==SelectPage Settings==--
 	function library:SelectPage(page, toggle)
 		
 		if toggle and self.focusedPage == page then -- already selected
@@ -1953,14 +2052,14 @@ do
 		error("No module found under "..tostring(info))
 	end
 	
-	-- updates
-	
+--============================== Updates ==============================--
 	function section:updateButton(button, title)
 		button = self:getModule(button)
 		
 		button.Title.Text = title
 	end
 	
+	-- update togglebutton
 	function section:updateToggle(toggle, title, value)
 		toggle = self:getModule(toggle)
 		
@@ -1988,6 +2087,7 @@ do
 		}, 0.1)
 	end
 	
+	-- update textbox
 	function section:updateTextbox(textbox, title, value)
 		textbox = self:getModule(textbox)
 		
@@ -2001,6 +2101,7 @@ do
 		
 	end
 	
+	-- update keybinds
 	function section:updateKeybind(keybind, title, key)
 		keybind = self:getModule(keybind)
 		
@@ -2023,6 +2124,7 @@ do
 		end
 	end
 	
+	-- update colorpicker
 	function section:updateColorPicker(colorpicker, title, color)
 		colorpicker = self:getModule(colorpicker)
 		
@@ -2062,6 +2164,7 @@ do
 		end
 	end
 	
+	-- update slider
 	function section:updateSlider(slider, title, value, min, max, lvalue)
 		slider = self:getModule(slider)
 		
@@ -2089,6 +2192,7 @@ do
 		return value
 	end
 	
+	-- update dropdown
 	function section:updateDropdown(dropdown, title, list, callback)
 		dropdown = self:getModule(dropdown)
 		
@@ -2166,5 +2270,5 @@ do
 		end
 	end
 end
-
+-- return
 return library
