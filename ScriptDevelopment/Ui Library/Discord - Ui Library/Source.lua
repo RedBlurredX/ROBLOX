@@ -288,6 +288,7 @@ function DiscordLib:Window(text)
 	CloseBtn.MouseButton1Click:Connect(
 		function()
 			MainFrame:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
+				destroy:DiscordLib
 		end
 	)
 
