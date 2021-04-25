@@ -1,17 +1,17 @@
--- Init
+-- init
 local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
 
--- Services
+-- services
 local input = game:GetService("UserInputService")
 local run = game:GetService("RunService")
 local tween = game:GetService("TweenService")
 local tweeninfo = TweenInfo.new
 
--- Additional
+-- additional
 local utility = {}
 
--- Themes
+-- themes
 local objects = {}
 local themes = {
 	Background = Color3.fromRGB(24, 24, 24), 
@@ -198,8 +198,7 @@ do
 	
 end
 
--- Classes 
-
+-- classes
 local library = {} -- main
 local page = {}
 local pageline = {}
@@ -213,7 +212,7 @@ do
 	
 	-- new classes
 	
---Library Settings
+-- library settings
 	function library.new(title)
 		local container = utility:Create("ScreenGui", {
 			Name = title,
@@ -305,7 +304,7 @@ do
 		}, library)
 	end
 	
---Page Settings
+-- page settings
 	function page.new(library, title, icon)
 		local button = utility:Create("TextButton", {
 			Name = title,
@@ -373,7 +372,7 @@ do
 		}, page)
 	end
 
---Section Settings
+-- section settings
 	function section.new(page, title)
 		local container = utility:Create("ImageLabel", {
 			Name = title,
@@ -446,7 +445,7 @@ do
 		return section
 	end
 	
--- Functions 
+-- functions 
 	function library:setTheme(theme, color3)
 		themes[theme] = color3
 		
@@ -501,8 +500,9 @@ do
 		self.toggling = false
 	end
 	
--- New Modules 
---Notify Settings
+-- new modules
+	
+-- notify1
 	function library:Notify(title, text, callback)
 	
 		-- overwrite last notification
@@ -663,7 +663,7 @@ do
 		end)
 	end
 	
---Notify Settings (Modded)
+-- notify2
 	function library:TempNotify(title, text, waittime)
 	
 		-- overwrite last tempnotification
@@ -756,7 +756,7 @@ do
 			tempnotification:Destroy()
 	end
 	
---Button Settings==--
+-- button settings
 	function section:addButton(title, callback)
 		local button = utility:Create("ImageButton", {
 			Name = "Button",
@@ -817,7 +817,7 @@ do
 		return button
 	end
 
---Toggle Button Settings==--
+-- toggle button settings
 	function section:addToggle(title, default, callback)
 		local toggle = utility:Create("ImageButton", {
 			Name = "Toggle",
@@ -891,7 +891,7 @@ do
 		return toggle
 	end
 
---Textbox Settings==--
+-- textbox settings
 	function section:addTextbox(title, default, callback)
 		local textbox = utility:Create("ImageButton", {
 			Name = "Textbox",
@@ -1000,7 +1000,7 @@ do
 		return textbox
 	end
 
---Keybind Settings==--
+-- keybinds settings
 	function section:addKeybind(title, default, callback, changedCallback)
 		local keybind = utility:Create("ImageButton", {
 			Name = "Keybind",
@@ -1106,7 +1106,7 @@ do
 		return keybind
 	end
 
---ColorPicker Settings==--
+-- colorpicker settings
 	function section:addColorPicker(title, default, callback)
 		local colorpicker = utility:Create("ImageButton", {
 			Name = "ColorPicker",
@@ -1631,7 +1631,7 @@ do
 		return colorpicker
 	end
 
---Slider Settings==--
+-- slider settings
 	function section:addSlider(title, default, min, max, callback)
 		local slider = utility:Create("ImageButton", {
 			Name = "Slider",
@@ -1783,7 +1783,7 @@ do
 		return slider
 	end
 
---Dropdown Settings==--
+-- dropdown settings
 	function section:addDropdown(title, list, callback)
 		local dropdown = utility:Create("Frame", {
 			Name = "Dropdown",
@@ -1912,7 +1912,7 @@ do
 	
 	-- class functions
 
---SelectPage Settings==--
+-- selectpage settings
 	function library:SelectPage(page, toggle)
 		
 		if toggle and self.focusedPage == page then -- already selected
