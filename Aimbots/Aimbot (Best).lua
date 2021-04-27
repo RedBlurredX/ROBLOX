@@ -146,4 +146,4 @@ game:GetService('RunService').RenderStepped:connect(function()
 end)
 
 _G.FREE_FOR_ALL = true
-_G.BIND = 50 -- LEFT CTRL
+_G.BIND = 45 --CAPSLOCK
